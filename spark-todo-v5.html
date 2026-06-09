@@ -364,8 +364,8 @@ function charSVG(key,stage){let inner;switch(key){case 'ember':inner=buildEmber(
 
 let state=null, tab='personal', recog=null, listening=false;
 const store={
-  async load(){try{if(window.storage){const r=await window.storage.get('sparkv5');return r?JSON.parse(r.value):null;}}catch(e){}return null;},
-  async save(){try{if(window.storage){await window.storage.set('sparkv5',JSON.stringify(state));}}catch(e){}}
+  load(){try{const r=localStorage.getItem('sparkv5');return r?JSON.parse(r):null;}catch(e){return null;}},
+  save(){try{localStorage.setItem('sparkv5',JSON.stringify(state));}catch(e){}}
 };
 function save(){store.save();}
 function rid(){return Math.random().toString(36).slice(2,9);}
